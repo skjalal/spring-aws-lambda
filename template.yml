@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Serverless Spring Boot 3 API - com.example::spring-aws-lambda
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+
+Resources:
+  MyRestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: MyApiGateway
+      StageName: Dev
+      Cors:
+        AllowOrigin: "'*'"
+  SpringAwsLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.example.StreamLambdaHandler::handleRequest
+      Runtime: java17
+      CodeUri: ./target/spring-aws-lambda-package.zip
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 30
+      Events:
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+            RestApiId:
+              Ref: MyRestApi
+  SpringLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Join [ '/', [ '/aws/lambda', !Ref SpringAwsLambdaFunction ] ]
+      RetentionInDays: 30
+Outputs:
+  SpringAwsLambdaApi:
+    Description: URL for application
+    Value: !Sub 'https://${MyRestApi}.execute-api.${AWS::Region}.amazonaws.com/Dev/actuator/health'
+    Export:
+      Name: SpringAwsLambdaApi

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-aws-lambda
+management:
+  health:
+    diskspace:
+      enabled: false
