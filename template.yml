@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS Serverless Spring Boot 3 API - com.example::spring-aws-lambda
+Description: AWS Serverless Spring Boot 3 API - SPRING-AWS-LAMBDA-FUNCTION
 Globals:
   Api:
     EndpointConfiguration: REGIONAL

@@ -15,15 +15,7 @@ You can use the SAM CLI to quickly build the project
 ```bash
 $ mvn archetype:generate -DartifactId=spring-aws-lambda -DarchetypeGroupId=com.amazonaws.serverless.archetypes -DarchetypeArtifactId=aws-serverless-jersey-archetype -DarchetypeVersion=2.0.3 -DgroupId=com.example -Dversion=0.0.1-SNAPSHOT -Dinteractive=false
 $ cd spring-aws-lambda
-$ sam build
-Building resource 'SpringAwsLambdaFunction'
-Running JavaGradleWorkflow:GradleBuild
-Running JavaGradleWorkflow:CopyArtifacts
-
-Build Succeeded
-
-Built Artifacts  : .aws-sam/build
-Built Template   : .aws-sam/build/template.yaml
+$ mvn clean package
 
 Commands you can use next
 =========================
@@ -67,7 +59,7 @@ Once the deployment is completed, the SAM CLI will print out the stack's outputs
 -------------------------------------------------------------------------------------------------------------
 OutputKey-Description                        OutputValue
 -------------------------------------------------------------------------------------------------------------
-SpringAwsLambdaApi - URL for application            https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/Prod/pets
+SpringAwsLambdaApi - URL for application            https://xxxxxxxxxx.execute-api.us-west-2.amazonaws.com/Prod/actuator//health
 -------------------------------------------------------------------------------------------------------------
 ```
 
