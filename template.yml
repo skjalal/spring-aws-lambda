@@ -34,7 +34,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Join [ '/', [ '/aws/lambda', !Ref SpringAwsLambdaFunction ] ]
-      RetentionInDays: 30
+      RetentionInDays: 10
 Outputs:
   SpringAwsLambdaApi:
     Description: URL for application
