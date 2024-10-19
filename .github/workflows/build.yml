@@ -38,4 +38,4 @@ jobs:
         uses: advanced-security/maven-dependency-submission-action@v4
         with:
           ignore-maven-wrapper: true
-          token: '${{ github.token }}'
+          token: '${{ secrets.GITHUB_TOKEN }}'
